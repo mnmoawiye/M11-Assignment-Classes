@@ -40,7 +40,7 @@ class Movie {
 const rushHour = new Movie(
   "Rush Hour",
   ["Jackie Chan", "Chris Tucker"],
-  "A Hong Kong detective and a loudmouthed LAPD officer team up to rescue a kidnapped girl.",
+  "A Chinese and African American  policemen work together to save little girl",
   8.2
 );
 
