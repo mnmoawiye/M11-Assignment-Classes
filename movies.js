@@ -1,10 +1,5 @@
 // Define the Movie class
 class Movie {
-  #title;
-  #cast;
-  #description;
-  #rating;
-  
   constructor(title, cast, description, rating) {
     this.#title = title;
     this.#cast = cast;
@@ -12,40 +7,60 @@ class Movie {
     this.#rating = rating;
   }
 
+  // Private fields
+  #title;
+  #cast;
+  #description;
+  #rating;
+
+  // Method to update the rating of the movie
   updateRating(newRating) {
     this.#rating = newRating;
   }
-  
-  displayInfo() {
-    const info = document.getElementById("movieInfo");
-    info.innerHTML= `
-    <p><strong>Title:</strong> ${this.#title}</p>
-    <p><strong>Cast:</strong> ${this.#cast}</p>
-    <p><strong>description:</strong>${this.#description}</p>
-    <p><strong>rating:</strong>${this.#rating}</p>
-    <hr />
-    `
-  }
-
-    getTitle() {
-      return this.#title;
-    }
-
-  const rushHour = new Movie(
-    
-  )
-}
-  // title, cast, description, rating
-
-  // Method to update the rating of the movie
 
   // Method to display the movie's information
+  displayInfo() {
+    const infoDiv = document.getElementById("movie-info");
+    infoDiv.innerHTML = `
+      <p><strong>Title:</strong> ${this.#title}</p>
+      <p><strong>Cast:</strong> ${this.#cast.join(", ")}</p>
+      <p><strong>Description:</strong> ${this.#description}</p>
+      <p><strong>Rating:</strong> ${this.#rating}</p>
+      <hr />
+    `;
+  }
 
+  // Getter for title (used outside class)
+  getTitle() {
+    return this.#title;
+  }
+}
 
-// Test your implementation
+// Create and display the movie
+const rushHour = new Movie(
+  "Rush Hour",
+  ["Jackie Chan", "Chris Tucker"],
+  "A Hong Kong detective and a loudmouthed LAPD officer team up to rescue a kidnapped girl.",
+  8.2
+);
 
-// Display the initial information of the movie
+// Create the collection and add the movie
+const movies = [];
+movies.push(rushHour);
 
-// Update the rating of the movie
+// Display initial information
+rushHour.displayInfo();
 
-// Display the updated information of the movie
+// Function to update a movie rating by title
+function updateMovieRating(title, newRating) {
+  for (let movie of movies) {
+    if (movie.getTitle() === title) {
+      movie.updateRating(newRating);
+      movie.displayInfo();
+      break;
+    }
+  }
+}
+
+// Update the rating and show updated info
+updateMovieRating("Rush Hour", 8.5);
